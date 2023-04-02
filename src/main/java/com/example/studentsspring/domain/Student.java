@@ -8,18 +8,13 @@ import java.util.Date;
 
 public class Student {
     private Long id;
-    @NotBlank
     private String firstName;
     private String middleName;
-    @NotBlank
     private String lastName;
-    @Email
     private String email;
     private String password;
     private Group group;
-    @DateTimeFormat
     private Date createdAt;
-    @DateTimeFormat
     private Date updatedAt;
     private Date deletedAt;
 
@@ -63,6 +58,12 @@ public class Student {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public Student setPassword(String password) {
+        this.password = password;
+
+        return this;
     }
 
     public Student setLastName(String lastName) {

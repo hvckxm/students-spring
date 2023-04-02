@@ -9,12 +9,8 @@ import java.util.Date;
 public class Mark {
     private Student student;
     private Lesson lesson;
-    @Max(5)
-    @Min(2)
     private int value;
-    @DateTimeFormat
     private Date createdAt;
-    @DateTimeFormat
     private Date updatedAt;
 
     public Mark(Student student, Lesson lesson, int value, Date createdAt, Date updatedAt) {

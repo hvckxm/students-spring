@@ -1,4 +1,4 @@
-package com.example.studentsspring.interactors;
+package com.example.studentsspring.interactors.group.student.mark;
 
 import com.example.studentsspring.domain.Mark;
 import com.example.studentsspring.domain.MarkRepository;
