@@ -5,14 +5,14 @@ import com.students.infrastructure.repositories.group.GroupRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateGroupInteractor {
+public class DeleteGroupInteractor {
     private final GroupRepository groupRepository;
 
-    public CreateGroupInteractor(GroupRepository groupRepository) {
+    public DeleteGroupInteractor(GroupRepository groupRepository) {
         this.groupRepository = groupRepository;
     }
 
-    public void create(Group group) {
-        this.groupRepository.save(group);
+    public void delete(Group group) {
+        this.groupRepository.delete(group);
     }
 }

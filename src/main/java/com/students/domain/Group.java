@@ -40,7 +40,7 @@ public class Group {
         return title;
     }
 
-    public Group setName(String title) {
+    public Group setTitle(String title) {
         this.title = title;
 
         return this;

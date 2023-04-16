@@ -5,14 +5,14 @@ import com.students.infrastructure.repositories.group.GroupRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateGroupInteractor {
+public class UpdateGroupInteractor {
     private final GroupRepository groupRepository;
 
-    public CreateGroupInteractor(GroupRepository groupRepository) {
+    public UpdateGroupInteractor(GroupRepository groupRepository) {
         this.groupRepository = groupRepository;
     }
 
-    public void create(Group group) {
+    public void update(Group group) {
         this.groupRepository.save(group);
     }
 }

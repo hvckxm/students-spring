@@ -7,13 +7,23 @@
 <section>
     <div class="card">
         <div class="card-header">
-            Create group
+            Edit group
         </div>
         <div class="card-body">
-            <form action="#" th:action="@{/groups/}" th:object="${group}" method="post">
+            <form action="#"
+                  th:action="@{/groups/{id}/(id=${group.getId()})}"
+                  th:object="${group}"
+                  th:method="put"
+            >
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" th:field="*{title}">
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="title"
+                            name="title"
+                            th:field="*{title}"
+                    >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

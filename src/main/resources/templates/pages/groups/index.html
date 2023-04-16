@@ -12,7 +12,7 @@
                     <h1>Groups</h1>
                 </div>
                 <div>
-                    <a class="btn btn-primary">Create</a>
+                    <a class="btn btn-primary" th:href="@{/groups/create/}">Create</a>
                 </div>
             </div>
         </div>
@@ -29,6 +29,15 @@
                 <tr th:each="group: ${groupPage}">
                     <th th:text="${group.getId()}"></th>
                     <td th:text="${group.getTitle()}"></td>
+                    <td>
+                        <form th:method="delete" th:action="@{/groups/{id}/(id=${group.getId()})}">
+                            <div class="btn btn-group btn-group-sm">
+                                <a th:href="@{/groups/{id}/(id=${group.getId()})}"
+                                   class="btn btn-primary btn-sm">Edit</a>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </div>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
