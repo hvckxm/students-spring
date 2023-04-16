@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Groups</title>
+</head>
+<body>
+<section>
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h1>Groups</h1>
+                </div>
+                <div>
+                    <a class="btn btn-primary">Create</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>title</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="group: ${groupPage}">
+                    <th th:text="${group.getId()}"></th>
+                    <td th:text="${group.getTitle()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>
