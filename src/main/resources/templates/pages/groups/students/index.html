@@ -9,10 +9,10 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h1>Groups</h1>
+                    <h1>Students</h1>
                 </div>
                 <div>
-                    <a class="btn btn-primary" th:href="@{/groups/create/}">Create</a>
+                    <a class="btn btn-primary" th:href="@{/groups/{group}/students/create/(group=${group.getId()})}">Create</a>
                 </div>
             </div>
         </div>
@@ -21,18 +21,18 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>title</th>
+                    <th>full name</th>
                     <th>actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="group: ${groupPage}">
-                    <th th:text="${group.getId()}"></th>
-                    <td><a th:text="${group.getTitle()}" th:href="@{/groups/{id}/students/(id=${group.getId()})}"></a></td>
+                <tr th:each="student: ${studentPage}">
+                    <th th:text="${student.getId()}"></th>
+                    <td th:text="${student.getFullName()}"></td>
                     <td>
-                        <form th:method="delete" th:action="@{/groups/{id}/(id=${group.getId()})}">
+                        <form th:method="delete" th:action="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}">
                             <div class="btn btn-group btn-group-sm">
-                                <a th:href="@{/groups/{id}/(id=${group.getId()})}"
+                                <a th:href="@{/groups/{id}/students/{student}/edit(id=${group.getId()}, student=${student.getId()})}"
                                    class="btn btn-primary btn-sm">Edit</a>
                                 <button class="btn btn-danger btn-sm">Delete</button>
                             </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="card-footer d-flex justify-content-center">
             <div th:insert="components/pagination :: pagination(link='/groups/',
-                model=${groupPage},
+                model=${studentPage},
                 pages=${pageNumbers})"
             >
             </div>

@@ -1,7 +1,9 @@
 package com.students.domain;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,13 +16,15 @@ public class Student {
     private String lastName;
     private String email;
     private String password;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthday;
 
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
     private Date createdAt;
     private Date updatedAt;
-    private Date deletedAt;
+    private LocalDate deletedAt;
 
     public Student(Long id, String firstName, String middleName, String lastName, String email) {
         this.id = id;
@@ -120,17 +124,31 @@ public class Student {
         return this;
     }
 
-    public Date getDeletedAt() {
+    public LocalDate getDeletedAt() {
         return deletedAt;
     }
 
-    public Student setDeletedAt(Date deletedAt) {
+    public Student setDeletedAt(LocalDate deletedAt) {
         this.deletedAt = deletedAt;
+
+        return this;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public Student setBirthday(Date birthday) {
+        this.birthday = birthday;
 
         return this;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public String getFullName() {
+        return this.firstName + " " + this.middleName + " " + this.lastName;
     }
 }

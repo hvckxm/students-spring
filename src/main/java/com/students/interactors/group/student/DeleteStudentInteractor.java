@@ -1,21 +1,18 @@
 package com.students.interactors.group.student;
 
-import com.students.domain.Group;
 import com.students.domain.Student;
 import com.students.infrastructure.repositories.student.StudentRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateStudentInteractor {
+public class DeleteStudentInteractor {
     private final StudentRepository studentRepository;
 
-    public CreateStudentInteractor(StudentRepository studentRepository) {
+    public DeleteStudentInteractor(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    public void create(Student student, Group group) {
-        student.setGroup(group);
-
-        this.studentRepository.save(student);
+    public void delete(Student student) {
+        this.studentRepository.delete(student);
     }
 }

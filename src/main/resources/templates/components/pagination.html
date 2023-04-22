@@ -1,0 +1,24 @@
+<div th:fragment="pagination(link, model, pages)">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" th:href="link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" th:each="pageNumber : ${pages}">
+                <a th:href="@{${link}(size=${model.size}, page=${pageNumber})}"
+                   th:text=${pageNumber}
+                   class="page-link"
+                   th:classappend="${pageNumber==model.number + 1} ? active"
+                >
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

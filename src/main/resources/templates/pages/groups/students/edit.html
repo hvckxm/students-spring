@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Create Student</title>
+</head>
+<body>
+<section>
+    <div class="card">
+        <div class="card-header">
+            Edit student
+        </div>
+        <div class="card-body">
+            <form action="#"
+                  th:action="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}"
+                  th:object="${student}"
+                  th:method="put"
+            >
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="firstName" name="title" th:field="*{firstName}">
+                </div>
+                <div class="mb-3">
+                    <label for="middleName" class="form-label">Middle name</label>
+                    <input type="text" class="form-control" id="middleName" name="middleName" th:field="*{middleName}">
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" th:field="*{email}">
+                </div>
+                <div class="mb-3">
+                    <label for="birthday" class="form-label">Birthday</label>
+                    <input type="date" class="form-control" id="birthday" name="birthday" th:field="*{birthday}">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
