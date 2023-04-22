@@ -1,10 +1,7 @@
 package com.students.infrastructure.controllers;
 
 import com.students.domain.Group;
-import com.students.interactors.group.CreateGroupInteractor;
-import com.students.interactors.group.DeleteGroupInteractor;
-import com.students.interactors.group.GetGroupListInteractor;
-import com.students.interactors.group.UpdateGroupInteractor;
+import com.students.interactors.group.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -23,17 +20,20 @@ public class GroupController {
     private final CreateGroupInteractor createGroupInteractor;
     private final UpdateGroupInteractor updateGroupInteractor;
     private final DeleteGroupInteractor deleteGroupInteractor;
+    private final ShowGroupInteractor showGroupInteractor;
 
     public GroupController(
             GetGroupListInteractor getGroupListInteractor,
             CreateGroupInteractor createGroupInteractor,
             UpdateGroupInteractor updateGroupInteractor,
-            DeleteGroupInteractor deleteGroupInteractor
+            DeleteGroupInteractor deleteGroupInteractor,
+            ShowGroupInteractor showGroupInteractor
     ) {
         this.getGroupListInteractor = getGroupListInteractor;
         this.createGroupInteractor = createGroupInteractor;
         this.updateGroupInteractor = updateGroupInteractor;
         this.deleteGroupInteractor = deleteGroupInteractor;
+        this.showGroupInteractor = showGroupInteractor;
     }
 
     @GetMapping("/")
@@ -67,7 +67,9 @@ public class GroupController {
     }
 
     @GetMapping("/{id}/")
-    public String edit(@ModelAttribute Group group, Model model) {
+    public String edit(@PathVariable("id") int id, Model model) {
+        Group group = this.showGroupInteractor.get(id);
+
         model.addAttribute("group", group);
 
         return "pages/groups/edit";

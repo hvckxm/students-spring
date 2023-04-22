@@ -2,10 +2,7 @@ package com.students.infrastructure.controllers;
 
 import com.students.domain.Group;
 import com.students.domain.Student;
-import com.students.interactors.group.student.CreateStudentInteractor;
-import com.students.interactors.group.student.DeleteStudentInteractor;
-import com.students.interactors.group.student.GetGroupStudentListInteractor;
-import com.students.interactors.group.student.UpdateStudentInteractor;
+import com.students.interactors.group.student.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -25,17 +22,20 @@ public class StudentController {
     private final CreateStudentInteractor createStudentInteractor;
     private final UpdateStudentInteractor updateStudentInteractor;
     private final DeleteStudentInteractor deleteStudentInteractor;
+    private final ShowStudentInteractor showStudentInteractor;
 
     public StudentController(
             GetGroupStudentListInteractor getGroupStudentListInteractor,
             CreateStudentInteractor createStudentInteractor,
             UpdateStudentInteractor updateStudentInteractor,
-            DeleteStudentInteractor deleteStudentInteractor
+            DeleteStudentInteractor deleteStudentInteractor,
+            ShowStudentInteractor showStudentInteractor
     ) {
         this.getGroupStudentListInteractor = getGroupStudentListInteractor;
         this.createStudentInteractor = createStudentInteractor;
         this.updateStudentInteractor = updateStudentInteractor;
         this.deleteStudentInteractor = deleteStudentInteractor;
+        this.showStudentInteractor = showStudentInteractor;
     }
 
     @GetMapping("/")
@@ -83,9 +83,11 @@ public class StudentController {
     @GetMapping("/{id}/edit")
     public String edit(
             @PathVariable Group group,
-            @ModelAttribute Student student,
+            @PathVariable int id,
             Model model
     ) {
+        Student student = this.showStudentInteractor.get(id);
+
         model.addAttribute("group", group);
         model.addAttribute("student", student);
 
@@ -116,5 +118,19 @@ public class StudentController {
         redirectAttributes.addAttribute("group", group);
 
         return new RedirectView("/groups/{group}/students/");
+    }
+
+    @GetMapping("/{id}/")
+    public String show(
+            @PathVariable Group group,
+            @PathVariable int id,
+            Model model
+    ) {
+        Student student = this.showStudentInteractor.get(id);
+
+        model.addAttribute("group", group);
+        model.addAttribute("student", student);
+
+        return "pages/groups/students/show";
     }
 }

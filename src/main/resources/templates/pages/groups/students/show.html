@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title th:text="${student.getFullName()}"></title>
+</head>
+<body>
+<section>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h1 th:text="${student.getFullName()}"></h1>
+                </div>
+                <div class="card-body">
+                    <p th:text="${'First name: ' + student.getFirstName()}"></p>
+                    <p th:if="${student.getMiddleName()}" th:text="${'Middle name: ' + student.getMiddleName()}"></p>
+                    <p th:text="${'Last name: ' + student.getLastName()}"></p>
+                    <p th:text="${'Email: ' + student.getEmail()}"></p>
+                    <p th:text="${'Birthday: ' + student.getBirthday()}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Marks</h1>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -28,7 +28,7 @@
                 <tbody>
                 <tr th:each="student: ${studentPage}">
                     <th th:text="${student.getId()}"></th>
-                    <td th:text="${student.getFullName()}"></td>
+                    <td><a th:text="${student.getFullName()}" th:href="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}"></a></td>
                     <td>
                         <form th:method="delete" th:action="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}">
                             <div class="btn btn-group btn-group-sm">
