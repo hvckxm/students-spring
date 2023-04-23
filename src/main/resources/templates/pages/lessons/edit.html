@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Edit group</title>
+    <title>Edit lesson</title>
 </head>
 <body>
 <section>
     <div class="card">
         <div class="card-header">
-            Edit group
+            Edit lesson
         </div>
         <div class="card-body">
             <form action="#"
-                  th:action="@{/groups/{id}/(id=${group.getId()})}"
-                  th:object="${group}"
+                  th:action="@{/lessons/{id}/(id=${lesson.getId()})}"
+                  th:object="${lesson}"
                   th:method="put"
             >
                 <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
+                    <label for="name" class="form-label">Name</label>
                     <input
                             type="text"
                             class="form-control"
-                            id="title"
-                            name="title"
-                            th:field="*{title}"
+                            id="name"
+                            name="name"
+                            th:field="*{name}"
                     >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>

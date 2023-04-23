@@ -1,8 +1,10 @@
 package com.students.infrastructure.controllers;
 
 import com.students.domain.Group;
+import com.students.domain.Mark;
 import com.students.domain.Student;
 import com.students.interactors.group.student.*;
+import com.students.interactors.group.student.mark.GetStudentMarksListInteractor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -23,19 +25,22 @@ public class StudentController {
     private final UpdateStudentInteractor updateStudentInteractor;
     private final DeleteStudentInteractor deleteStudentInteractor;
     private final ShowStudentInteractor showStudentInteractor;
+    private final GetStudentMarksListInteractor getStudentMarksListInteractor;
 
     public StudentController(
             GetGroupStudentListInteractor getGroupStudentListInteractor,
             CreateStudentInteractor createStudentInteractor,
             UpdateStudentInteractor updateStudentInteractor,
             DeleteStudentInteractor deleteStudentInteractor,
-            ShowStudentInteractor showStudentInteractor
+            ShowStudentInteractor showStudentInteractor,
+            GetStudentMarksListInteractor getStudentMarksListInteractor
     ) {
         this.getGroupStudentListInteractor = getGroupStudentListInteractor;
         this.createStudentInteractor = createStudentInteractor;
         this.updateStudentInteractor = updateStudentInteractor;
         this.deleteStudentInteractor = deleteStudentInteractor;
         this.showStudentInteractor = showStudentInteractor;
+        this.getStudentMarksListInteractor = getStudentMarksListInteractor;
     }
 
     @GetMapping("/")
@@ -124,12 +129,30 @@ public class StudentController {
     public String show(
             @PathVariable Group group,
             @PathVariable int id,
+            @RequestParam("page") Optional<Integer> page,
             Model model
     ) {
         Student student = this.showStudentInteractor.get(id);
 
         model.addAttribute("group", group);
         model.addAttribute("student", student);
+
+        int currentPage = page.orElse(1);
+
+        Page<Mark> markPage = this.getStudentMarksListInteractor.getAllStudentMarksPaginated(
+                student,
+                PageRequest.of(currentPage - 1, 10)
+        );
+
+        int totalPages = markPage.getTotalPages();
+
+        List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                .boxed()
+                .toList();
+
+        model.addAttribute("markPage", markPage);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
 
         return "pages/groups/students/show";
     }
