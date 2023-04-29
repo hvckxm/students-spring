@@ -32,6 +32,8 @@
                     <td>
                         <form th:method="delete" th:action="@{/groups/{id}/(id=${group.getId()})}">
                             <div class="btn btn-group btn-group-sm">
+                                <a th:href="@{/groups/{id}/journal/(id=${group.getId()})}"
+                                   class="btn btn-info btn-sm">Journal</a>
                                 <a th:href="@{/groups/{id}/(id=${group.getId()})}"
                                    class="btn btn-primary btn-sm">Edit</a>
                                 <button class="btn btn-danger btn-sm">Delete</button>

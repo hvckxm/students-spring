@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Journal</title>
+</head>
+<body>
+<section>
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h1>Journal</h1>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="table-header">
+                <tr>
+                    <th>Student</th>
+                    <th th:each="lesson: ${lessons}" th:text="${lesson.name}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student: ${students}">
+                    <th th:text="${student.fullName}"></th>
+                    <th th:each="lesson: ${lessons}" th:text="${studentDictionaryDictionary.get(student).get(lesson)?.getValue() ?: '-'}"></th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

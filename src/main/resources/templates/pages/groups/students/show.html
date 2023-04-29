@@ -33,16 +33,9 @@
                 <div class="card-body">
                     <div class="row" th:each="mark: ${markPage}">
                         <div class="col">
-                            <div class="d-flex justify-content-between">
-                                <div>
-                                    <p th:text="${'Lesson: ' + mark.getLesson().getName()}"></p>
-                                    <p th:text="${'Mark: '+ mark.getValue()}"></p>
-                                </div>
-                                <div>
-                                    <a class="btn btn-primary btn-sm" th:href="@{/students/{student}/marks/{mark}(student=${student}, mark=${mark})}">
-                                        Edit
-                                    </a>
-                                </div>
+                            <div>
+                                <p th:text="${'Lesson: ' + mark.getLesson().getName()}"></p>
+                                <p th:text="${'Mark: '+ mark.getValue()}"></p>
                             </div>
                         </div>
                     </div>

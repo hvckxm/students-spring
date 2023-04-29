@@ -9,4 +9,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface StudentRepository extends PagingAndSortingRepository<Student, Integer>, CrudRepository<Student, Integer> {
     Page<Student> findAllByGroup(Group group, Pageable pageable);
+    Iterable<Student> findAllByGroup(Group group);
 }

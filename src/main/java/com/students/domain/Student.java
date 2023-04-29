@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -19,19 +20,23 @@ public class Student {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private List<Mark> marks;
     private Date createdAt;
     private Date updatedAt;
     private LocalDate deletedAt;
 
-    public Student(Long id, String firstName, String middleName, String lastName, String email) {
+    public Student(Long id, String firstName, String middleName, String lastName, String email, List<Mark> marks) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
+        this.marks = marks;
     }
 
     public Student() {
@@ -150,5 +155,15 @@ public class Student {
 
     public String getFullName() {
         return this.firstName + " " + this.middleName + " " + this.lastName;
+    }
+
+    public Student addMark(Mark mark) {
+        this.marks.add(mark);
+
+        return this;
+    }
+
+    public List<Mark> getMarks() {
+        return marks;
     }
 }

@@ -24,6 +24,7 @@ public class MarkId implements Serializable {
 
     public MarkId setStudent(Student student) {
         this.student = student;
+
         return this;
     }
 

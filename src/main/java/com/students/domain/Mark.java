@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @IdClass(MarkId.class)
 public class Mark {
     @Id
-    @OneToOne(targetEntity = Student.class)
+    @ManyToOne(targetEntity = Student.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private Student student;
     @Id
-    @OneToOne(targetEntity = Lesson.class)
+    @ManyToOne(targetEntity = Lesson.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
     private int value;
