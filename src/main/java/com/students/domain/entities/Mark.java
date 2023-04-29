@@ -1,6 +1,6 @@
-package com.students.domain;
+package com.students.domain.entities;
 
-import com.students.domain.id.MarkId;
+import com.students.domain.entities.id.MarkId;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

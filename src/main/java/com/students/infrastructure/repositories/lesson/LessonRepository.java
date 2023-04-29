@@ -1,6 +1,6 @@
 package com.students.infrastructure.repositories.lesson;
 
-import com.students.domain.Lesson;
+import com.students.domain.entities.Lesson;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

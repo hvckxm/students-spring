@@ -1,6 +1,6 @@
 package com.students.interactors.group;
 
-import com.students.domain.Group;
+import com.students.domain.entities.Group;
 import com.students.infrastructure.repositories.group.GroupRepository;
 import org.springframework.stereotype.Service;
 

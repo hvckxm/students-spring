@@ -1,6 +1,6 @@
 package com.students.infrastructure.controllers;
 
-import com.students.domain.Lesson;
+import com.students.domain.entities.Lesson;
 import com.students.interactors.lesson.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

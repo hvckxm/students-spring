@@ -1,6 +1,6 @@
 package com.students.interactors.group.student.mark;
 
-import com.students.domain.Lesson;
+import com.students.domain.entities.Lesson;
 import com.students.infrastructure.repositories.lesson.LessonRepository;
 import org.springframework.stereotype.Service;
 

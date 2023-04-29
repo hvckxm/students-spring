@@ -1,9 +1,9 @@
 package com.students.infrastructure.controllers;
 
-import com.students.domain.Group;
-import com.students.domain.Lesson;
-import com.students.domain.Mark;
-import com.students.domain.Student;
+import com.students.domain.entities.Group;
+import com.students.domain.entities.Lesson;
+import com.students.domain.entities.Mark;
+import com.students.domain.entities.Student;
 import com.students.interactors.group.journal.GetAllJournalLessonsInteractor;
 import com.students.interactors.group.journal.GetStudentsWithMarksInteractor;
 import com.students.interactors.group.journal.GroupStudentMarkByLessonInteractor;

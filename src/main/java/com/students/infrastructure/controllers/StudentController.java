@@ -1,8 +1,8 @@
 package com.students.infrastructure.controllers;
 
-import com.students.domain.Group;
-import com.students.domain.Mark;
-import com.students.domain.Student;
+import com.students.domain.entities.Group;
+import com.students.domain.entities.Mark;
+import com.students.domain.entities.Student;
 import com.students.interactors.group.student.*;
 import com.students.interactors.group.student.mark.GetStudentMarksListInteractor;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,7 @@
 package com.students.interactors.group.student.mark;
 
-import com.students.domain.Mark;
-import com.students.domain.Student;
+import com.students.domain.entities.Mark;
+import com.students.domain.entities.Student;
 import com.students.infrastructure.repositories.mark.MarkRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

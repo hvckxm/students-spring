@@ -1,7 +1,7 @@
 package com.students.infrastructure.repositories.mark;
 
-import com.students.domain.Mark;
-import com.students.domain.Student;
+import com.students.domain.entities.Mark;
+import com.students.domain.entities.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;

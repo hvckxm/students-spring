@@ -1,8 +1,8 @@
 package com.students.interactors.group.journal;
 
-import com.students.domain.Lesson;
-import com.students.domain.Mark;
-import com.students.domain.Student;
+import com.students.domain.entities.Lesson;
+import com.students.domain.entities.Mark;
+import com.students.domain.entities.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.Dictionary;

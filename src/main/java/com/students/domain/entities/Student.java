@@ -1,4 +1,4 @@
-package com.students.domain;
+package com.students.domain.entities;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;

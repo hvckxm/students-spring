@@ -1,7 +1,7 @@
-package com.students.domain.id;
+package com.students.domain.entities.id;
 
-import com.students.domain.Lesson;
-import com.students.domain.Student;
+import com.students.domain.entities.Lesson;
+import com.students.domain.entities.Student;
 
 import java.io.Serializable;
 
