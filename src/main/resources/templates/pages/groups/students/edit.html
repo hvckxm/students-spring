@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <form action="#"
-                  th:action="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}"
+                  th:action="@{students/{student}/(student=${student.getId()})}"
                   th:object="${student}"
                   th:method="put"
             >

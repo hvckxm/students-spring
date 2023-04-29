@@ -28,11 +28,11 @@
                 <tbody>
                 <tr th:each="student: ${studentPage}">
                     <th th:text="${student.getId()}"></th>
-                    <td><a th:text="${student.getFullName()}" th:href="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}"></a></td>
+                    <td><a th:text="${student.getFullName()}" th:href="@{/students/{student}/(student=${student.getId()})}"></a></td>
                     <td>
                         <form th:method="delete" th:action="@{/groups/{group}/students/{student}/(group=${group.getId()}, student=${student.getId()})}">
                             <div class="btn btn-group btn-group-sm">
-                                <a th:href="@{/groups/{id}/students/{student}/edit(id=${group.getId()}, student=${student.getId()})}"
+                                <a th:href="@{/students/{student}/edit(student=${student.getId()})}"
                                    class="btn btn-primary btn-sm">Edit</a>
                                 <button class="btn btn-danger btn-sm">Delete</button>
                             </div>

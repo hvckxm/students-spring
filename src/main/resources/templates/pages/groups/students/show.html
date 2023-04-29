@@ -22,11 +22,21 @@
         </div>
         <div class="col">
             <div class="card">
-                <div class="card-header">
-                    <h1>Marks</h1>
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        <h1>Marks</h1>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" th:href="@{/students/{id}/marks/create/(id=${student.getId()})}">Create</a>
+                    </div>
                 </div>
                 <div class="card-body">
-
+                    <div class="row" th:each="mark: ${markPage}">
+                        <div class="col">
+                            <p th:text="${'Lesson: ' + mark.getLesson().getName()}"></p>
+                            <p th:text="${'Mark: '+ mark.getValue()}"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

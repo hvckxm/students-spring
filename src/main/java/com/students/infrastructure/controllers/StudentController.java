@@ -18,7 +18,6 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("/groups/{group}/students")
 public class StudentController {
     private final GetGroupStudentListInteractor getGroupStudentListInteractor;
     private final CreateStudentInteractor createStudentInteractor;
@@ -43,7 +42,7 @@ public class StudentController {
         this.getStudentMarksListInteractor = getStudentMarksListInteractor;
     }
 
-    @GetMapping("/")
+    @GetMapping("/groups/{group}/students/")
     public String index(@PathVariable Group group, Model model, @RequestParam("page") Optional<Integer> page) {
         int currentPage = page.orElse(1);
 
@@ -64,7 +63,7 @@ public class StudentController {
         return "pages/groups/students/index";
     }
 
-    @GetMapping("/create/")
+    @GetMapping("/groups/{group}/students/create/")
     public String create(@PathVariable Group group, Model model) {
         model.addAttribute("student", new Student());
         model.addAttribute("group", group);
@@ -72,7 +71,7 @@ public class StudentController {
         return "pages/groups/students/create";
     }
 
-    @PostMapping("/")
+    @PostMapping("/groups/{group}/students/")
     public RedirectView store(
             @PathVariable Group group,
             @ModelAttribute Student student,
@@ -85,34 +84,31 @@ public class StudentController {
         return new RedirectView("/groups/{group}/students/");
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/students/{id}/edit")
     public String edit(
-            @PathVariable Group group,
             @PathVariable int id,
             Model model
     ) {
         Student student = this.showStudentInteractor.get(id);
 
-        model.addAttribute("group", group);
         model.addAttribute("student", student);
 
         return "pages/groups/students/edit";
     }
 
-    @PutMapping("/{id}/")
+    @PutMapping("/students/{id}/")
     public RedirectView update(
-            @PathVariable Group group,
             @ModelAttribute Student student,
             RedirectAttributes redirectAttributes
     ) {
         this.updateStudentInteractor.update(student);
 
-        redirectAttributes.addAttribute("group", group);
+        redirectAttributes.addAttribute("student", student);
 
-        return new RedirectView("/groups/{group}/students/");
+        return new RedirectView("/students/{student}/");
     }
 
-    @DeleteMapping("/{id}/")
+    @DeleteMapping("/groups/{group}/students/{id}/")
     public RedirectView delete(
             @PathVariable Group group,
             @ModelAttribute Student student,
@@ -125,16 +121,14 @@ public class StudentController {
         return new RedirectView("/groups/{group}/students/");
     }
 
-    @GetMapping("/{id}/")
+    @GetMapping("/students/{id}/")
     public String show(
-            @PathVariable Group group,
             @PathVariable int id,
             @RequestParam("page") Optional<Integer> page,
             Model model
     ) {
         Student student = this.showStudentInteractor.get(id);
 
-        model.addAttribute("group", group);
         model.addAttribute("student", student);
 
         int currentPage = page.orElse(1);
@@ -153,6 +147,7 @@ public class StudentController {
         model.addAttribute("markPage", markPage);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
+        model.addAttribute("pageNumbers", pageNumbers);
 
         return "pages/groups/students/show";
     }
