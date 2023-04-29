@@ -10,7 +10,15 @@
             Create mark for student
         </div>
         <div class="card-body">
-            <form action="#" th:action="@{/users/{id}/marks/}" th:object="${mark}" method="post">
+            <form action="#" th:action="@{/students/{student}/marks/(student=${student.id})}" th:object="${mark}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Lesson</label>
+                    <select th:field="*{lesson}" class="form-select" aria-label="Lesson">
+                        <option value="null" selected>Please choose the lesson</option>
+                        <option th:each="lesson: ${lessons}" th:value="${lesson.id}" th:text="${lesson.name}"></option>
+                    </select>
+                </div>
+
                 <div class="mb-3">
                     <label for="name" class="form-label">Value</label>
                     <input type="number" min="2" max="5" class="form-control" id="name" name="name" th:field="*{value}">

@@ -14,6 +14,10 @@ public class MarkId implements Serializable {
         this.lesson = lesson;
     }
 
+    public MarkId() {
+
+    }
+
     public Student getStudent() {
         return student;
     }
@@ -29,6 +33,7 @@ public class MarkId implements Serializable {
 
     public MarkId setLesson(Lesson lesson) {
         this.lesson = lesson;
+
         return this;
     }
 }

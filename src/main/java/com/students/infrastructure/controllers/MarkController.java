@@ -7,10 +7,7 @@ import com.students.interactors.group.student.mark.AddMarkToStudentInteractor;
 import com.students.interactors.group.student.mark.GetAllLessonInteractor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -19,7 +16,10 @@ public class MarkController {
     private final GetAllLessonInteractor getAllLessonInteractor;
     private final AddMarkToStudentInteractor addMarkToStudentInteractor;
 
-    public MarkController(GetAllLessonInteractor getAllLessonInteractor, AddMarkToStudentInteractor addMarkToStudentInteractor) {
+    public MarkController(
+            GetAllLessonInteractor getAllLessonInteractor,
+            AddMarkToStudentInteractor addMarkToStudentInteractor
+    ) {
         this.getAllLessonInteractor = getAllLessonInteractor;
         this.addMarkToStudentInteractor = addMarkToStudentInteractor;
     }
@@ -36,6 +36,7 @@ public class MarkController {
         return "pages/groups/students/marks/create";
     }
 
+    @PostMapping("/")
     public RedirectView store(@PathVariable("student") Student student, @ModelAttribute Mark mark) {
         this.addMarkToStudentInteractor.addMarkToStudent(student, mark);
 
