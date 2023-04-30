@@ -2,9 +2,9 @@ package com.students.interactors.group;
 
 import com.students.domain.entities.Group;
 import com.students.infrastructure.repositories.group.GroupRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class CreateGroupInteractor {
     private final GroupRepository groupRepository;
 

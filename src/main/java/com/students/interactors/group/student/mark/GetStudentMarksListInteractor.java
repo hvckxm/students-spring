@@ -5,9 +5,8 @@ import com.students.domain.entities.Student;
 import com.students.infrastructure.repositories.mark.MarkRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-@Service
+import org.springframework.stereotype.Component;
+@Component
 public class GetStudentMarksListInteractor {
     private final MarkRepository markRepository;
 

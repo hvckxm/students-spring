@@ -2,9 +2,9 @@ package com.students.interactors.group.student;
 
 import com.students.domain.entities.Student;
 import com.students.infrastructure.repositories.student.StudentRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class DeleteStudentInteractor {
     private final StudentRepository studentRepository;
 

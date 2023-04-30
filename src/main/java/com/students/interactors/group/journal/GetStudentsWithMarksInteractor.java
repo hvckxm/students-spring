@@ -3,9 +3,9 @@ package com.students.interactors.group.journal;
 import com.students.domain.entities.Group;
 import com.students.domain.entities.Student;
 import com.students.infrastructure.repositories.student.StudentRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class GetStudentsWithMarksInteractor {
     private final StudentRepository studentRepository;
 

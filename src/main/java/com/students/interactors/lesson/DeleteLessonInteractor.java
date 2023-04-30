@@ -2,9 +2,10 @@ package com.students.interactors.lesson;
 
 import com.students.domain.entities.Lesson;
 import com.students.infrastructure.repositories.lesson.LessonRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class DeleteLessonInteractor {
     private final LessonRepository lessonRepository;
 

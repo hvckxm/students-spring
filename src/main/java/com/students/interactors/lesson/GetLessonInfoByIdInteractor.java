@@ -2,9 +2,9 @@ package com.students.interactors.lesson;
 
 import com.students.domain.entities.Lesson;
 import com.students.infrastructure.repositories.lesson.LessonRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class GetLessonInfoByIdInteractor {
     private final LessonRepository lessonRepository;
 

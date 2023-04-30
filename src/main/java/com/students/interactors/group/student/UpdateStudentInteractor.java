@@ -2,9 +2,11 @@ package com.students.interactors.group.student;
 
 import com.students.domain.entities.Student;
 import com.students.infrastructure.repositories.student.StudentRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+import java.time.LocalDateTime;
+
+@Component
 public class UpdateStudentInteractor {
     private final StudentRepository studentRepository;
 
@@ -13,6 +15,8 @@ public class UpdateStudentInteractor {
     }
 
     public void update(Student student) {
+        student.setUpdatedAt(LocalDateTime.now());
+
         this.studentRepository.save(student);
     }
 }

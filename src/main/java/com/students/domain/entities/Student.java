@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class Student {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
     private List<Mark> marks;
-    private Date createdAt;
-    private Date updatedAt;
-    private LocalDate deletedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt;
 
     public Student(Long id, String firstName, String middleName, String lastName, String email, List<Mark> marks) {
         this.id = id;
@@ -109,31 +110,31 @@ public class Student {
         return this;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public Student setCreatedAt(Date createdAt) {
+    public Student setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
 
         return this;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public Student setUpdatedAt(Date updatedAt) {
+    public Student setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
 
         return this;
     }
 
-    public LocalDate getDeletedAt() {
+    public LocalDateTime getDeletedAt() {
         return deletedAt;
     }
 
-    public Student setDeletedAt(LocalDate deletedAt) {
+    public Student setDeletedAt(LocalDateTime deletedAt) {
         this.deletedAt = deletedAt;
 
         return this;

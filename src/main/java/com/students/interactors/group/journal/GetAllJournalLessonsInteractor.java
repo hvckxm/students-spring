@@ -2,9 +2,9 @@ package com.students.interactors.group.journal;
 
 import com.students.domain.entities.Lesson;
 import com.students.infrastructure.repositories.lesson.LessonRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class GetAllJournalLessonsInteractor {
     private final LessonRepository lessonRepository;
 

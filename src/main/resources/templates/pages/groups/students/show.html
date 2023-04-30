@@ -17,6 +17,8 @@
                     <p th:text="${'Last name: ' + student.getLastName()}"></p>
                     <p th:text="${'Email: ' + student.getEmail()}"></p>
                     <p th:text="${'Birthday: ' + student.getBirthday()}"></p>
+                    <p th:text="${'Created at: ' + student.getCreatedAt()}"></p>
+                    <p th:text="${'Updated at: ' + student.getUpdatedAt()}"></p>
                 </div>
             </div>
         </div>
@@ -35,7 +37,8 @@
                         <div class="col">
                             <div>
                                 <p th:text="${'Lesson: ' + mark.getLesson().getName()}"></p>
-                                <p th:text="${'Mark: '+ mark.getValue()}"></p>
+                                <p th:text="${'Mark: ' + mark.getValue()}"></p>
+                                <p th:text="${'Created at ' + mark.getCreatedAt()}"></p>
                             </div>
                         </div>
                     </div>

@@ -2,9 +2,9 @@ package com.students.interactors.group.student.mark;
 
 import com.students.domain.entities.Lesson;
 import com.students.infrastructure.repositories.lesson.LessonRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class GetAllLessonInteractor {
     private final LessonRepository lessonRepository;
 

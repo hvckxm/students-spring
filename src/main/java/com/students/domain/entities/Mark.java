@@ -2,6 +2,8 @@ package com.students.domain.entities;
 
 import com.students.domain.entities.id.MarkId;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +18,8 @@ public class Mark {
     @ManyToOne(targetEntity = Lesson.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
+    @Max(5)
+    @Min(2)
     private int value;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
