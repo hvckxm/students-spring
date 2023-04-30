@@ -18,8 +18,6 @@ public class Mark {
     @ManyToOne(targetEntity = Lesson.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
-    @Max(5)
-    @Min(2)
     private int value;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

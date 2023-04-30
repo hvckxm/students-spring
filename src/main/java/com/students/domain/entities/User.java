@@ -3,13 +3,12 @@ package com.students.domain.entities;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Student {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,37 +19,40 @@ public class Student {
     private String password;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
-    private List<Mark> marks;
+    @ManyToMany
+    @JoinTable(name = "user_role")
+    private List<Role> roles;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
 
-    public Student(Long id, String firstName, String middleName, String lastName, String email, List<Mark> marks) {
+    public User() {
+
+    }
+
+    public User(Long id, String firstName, String middleName, String lastName, String email, String password, Date birthday, Group group, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.email = email;
-        this.marks = marks;
-    }
-
-    public Student() {
-
+        this.password = password;
+        this.birthday = birthday;
+        this.group = group;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
     }
 
     public Long getId() {
         return id;
     }
 
-    public Student setId(Long id) {
+    public User setId(Long id) {
         this.id = id;
-
         return this;
     }
 
@@ -58,9 +60,8 @@ public class Student {
         return firstName;
     }
 
-    public Student setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
-
         return this;
     }
 
@@ -68,9 +69,8 @@ public class Student {
         return middleName;
     }
 
-    public Student setMiddleName(String middleName) {
+    public User setMiddleName(String middleName) {
         this.middleName = middleName;
-
         return this;
     }
 
@@ -78,15 +78,8 @@ public class Student {
         return lastName;
     }
 
-    public Student setPassword(String password) {
-        this.password = password;
-
-        return this;
-    }
-
-    public Student setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
-
         return this;
     }
 
@@ -94,9 +87,26 @@ public class Student {
         return email;
     }
 
-    public Student setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public User setBirthday(Date birthday) {
+        this.birthday = birthday;
         return this;
     }
 
@@ -104,9 +114,8 @@ public class Student {
         return group;
     }
 
-    public Student setGroup(Group group) {
+    public User setGroup(Group group) {
         this.group = group;
-
         return this;
     }
 
@@ -114,9 +123,8 @@ public class Student {
         return createdAt;
     }
 
-    public Student setCreatedAt(LocalDateTime createdAt) {
+    public User setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-
         return this;
     }
 
@@ -124,7 +132,7 @@ public class Student {
         return updatedAt;
     }
 
-    public Student setUpdatedAt(LocalDateTime updatedAt) {
+    public User setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
 
         return this;
@@ -134,37 +142,19 @@ public class Student {
         return deletedAt;
     }
 
-    public Student setDeletedAt(LocalDateTime deletedAt) {
+    public User setDeletedAt(LocalDateTime deletedAt) {
         this.deletedAt = deletedAt;
 
         return this;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public Student setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public User addRole(Role role) {
+        this.roles.add(role);
 
         return this;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFullName() {
-        return this.firstName + " " + this.middleName + " " + this.lastName;
-    }
-
-    public Student addMark(Mark mark) {
-        this.marks.add(mark);
-
-        return this;
-    }
-
-    public List<Mark> getMarks() {
-        return marks;
     }
 }
