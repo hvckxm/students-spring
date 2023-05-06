@@ -2,8 +2,6 @@ package com.students.domain.entities;
 
 import com.students.domain.entities.id.MarkId;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 
 import java.time.LocalDateTime;
 

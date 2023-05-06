@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html
+  th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}"
+  xmlns:th="http://www.thymeleaf.org"
+  lang=""
+>
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <section>
+      <div class="card">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+          <form
+            class="needs-validation"
+            action="#"
+            th:action="@{/login/}"
+            th:object="${user}"
+            method="post"
+          >
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                th:field="*{email}"
+                th:errorclass="is-invalid"
+              />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('email')}"
+                th:errors="*{email}"
+              ></div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                th:errorclass="is-invalid"
+                name="password"
+                th:field="*{password}"
+              />
+              <div
+                class="invalid-feedback"
+                th:if="${#fields.hasErrors('password')}"
+                th:errors="*{password}"
+              ></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

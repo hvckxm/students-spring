@@ -27,8 +27,7 @@ public class GroupController {
             CreateGroupInteractor createGroupInteractor,
             UpdateGroupInteractor updateGroupInteractor,
             DeleteGroupInteractor deleteGroupInteractor,
-            ShowGroupInteractor showGroupInteractor
-    ) {
+            ShowGroupInteractor showGroupInteractor) {
         this.getGroupListInteractor = getGroupListInteractor;
         this.createGroupInteractor = createGroupInteractor;
         this.updateGroupInteractor = updateGroupInteractor;

@@ -4,7 +4,6 @@ import com.students.domain.entities.Mark;
 import com.students.domain.entities.Student;
 import com.students.infrastructure.repositories.mark.MarkRepository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 

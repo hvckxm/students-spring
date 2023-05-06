@@ -6,7 +6,6 @@ import com.students.infrastructure.repositories.student.StudentRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Component
 public class CreateStudentInteractor {

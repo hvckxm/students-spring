@@ -15,6 +15,7 @@ public class User {
     private String firstName;
     private String middleName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -33,7 +34,8 @@ public class User {
 
     }
 
-    public User(Long id, String firstName, String middleName, String lastName, String email, String password, Date birthday, Group group, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
+    public User(Long id, String firstName, String middleName, String lastName, String email, String password,
+            Date birthday, Group group, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
