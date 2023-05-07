@@ -24,7 +24,6 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j:8.0.32'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
     testImplementation 'org.springframework.security:spring-security-test:6.0.2'
-    compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity3")
 }
 
 tasks.named('test') {

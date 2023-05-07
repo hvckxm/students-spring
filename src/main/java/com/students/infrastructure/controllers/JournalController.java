@@ -7,6 +7,8 @@ import com.students.domain.entities.Student;
 import com.students.interactors.group.journal.GetAllJournalLessonsInteractor;
 import com.students.interactors.group.journal.GetStudentsWithMarksInteractor;
 import com.students.interactors.group.journal.GroupStudentMarkByLessonInteractor;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,18 +27,19 @@ public class JournalController {
     public JournalController(
             GetStudentsWithMarksInteractor getStudentsWithMarksInteractor,
             GetAllJournalLessonsInteractor getAllJournalLessonsInteractor,
-            GroupStudentMarkByLessonInteractor groupStudentMarkByLessonInteractor
-    ) {
+            GroupStudentMarkByLessonInteractor groupStudentMarkByLessonInteractor) {
         this.getStudentsWithMarksInteractor = getStudentsWithMarksInteractor;
         this.getAllJournalLessonsInteractor = getAllJournalLessonsInteractor;
         this.groupStudentMarkByLessonInteractor = groupStudentMarkByLessonInteractor;
     }
 
     @GetMapping("/")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public String index(Model ui, @ModelAttribute Group group) {
         Iterable<Student> students = this.getStudentsWithMarksInteractor.get(group);
         Iterable<Lesson> lessons = this.getAllJournalLessonsInteractor.get();
-        Dictionary<Student, Dictionary<Lesson, Mark>> studentDictionaryDictionary = this.groupStudentMarkByLessonInteractor.studentMarkDictionary(students, lessons);
+        Dictionary<Student, Dictionary<Lesson, Mark>> studentDictionaryDictionary = this.groupStudentMarkByLessonInteractor
+                .studentMarkDictionary(students, lessons);
 
         ui.addAttribute("group", group);
         ui.addAttribute("students", students);

@@ -43,7 +43,9 @@
             <li sec:authorize="isAuthenticated()" class="nav-item">
               <a class="nav-link" th:href="@{/lessons/}">Lessons</a>
             </li>
-            <div class="d-flex">
+          </ul>
+          <div class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li sec:authorize="!isAuthenticated()" class="nav-item">
                 <a class="nav-link" th:href="@{/login}">Login</a>
               </li>
@@ -54,8 +56,8 @@
                 sec:authorize="isAuthenticated()"
                 sec:authentication="name"
               ></span>
-            </div>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

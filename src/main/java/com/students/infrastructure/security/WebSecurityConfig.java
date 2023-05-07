@@ -2,13 +2,14 @@ package com.students.infrastructure.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import com.students.infrastructure.services.CustomUserDetailService;
 
 import jakarta.annotation.Resource;
@@ -33,6 +34,7 @@ public class WebSecurityConfig {
                     form -> form
                               .loginPage("/login")
                               .successForwardUrl("/")
+                              .defaultSuccessUrl("/")
                               .failureForwardUrl("/login?error")
                               .permitAll())
                     .logout(logout -> logout.permitAll())
@@ -47,5 +49,13 @@ public class WebSecurityConfig {
      @Bean
      public PasswordEncoder passwordEncoder() {
           return new BCryptPasswordEncoder();
+     }
+
+     @Bean
+     public RoleHierarchy roleHierarchy() {
+          RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+          String hierarchy = "ROLE_ADMIN > ROLE_TEACHER \n ROLE_TEACHER > ROLE_USER";
+          roleHierarchy.setHierarchy(hierarchy);
+          return roleHierarchy;
      }
 }
