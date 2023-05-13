@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html
-  th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}"
-  xmlns:th="http://www.thymeleaf.org"
-  lang=""
+        th:replace="~{layouts/main :: layout(~{::title}, ~{::section})}"
+        xmlns:th="http://www.thymeleaf.org"
+        lang=""
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
-  <head>
+<head>
     <title>Groups</title>
-  </head>
-  <body>
-    <section>
-      <div class="card">
+</head>
+<body>
+<section>
+    <div class="card">
         <div class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              <h1>Groups</h1>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h1>Groups</h1>
+                </div>
+                <div>
+                    <a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-primary" th:href="@{/groups/create/}">Create</a>
+                </div>
             </div>
-            <div>
-              <a class="btn btn-primary" th:href="@{/groups/create/}">Create</a>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>title</th>
-                <th>actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr th:each="group: ${groupPage}">
-                <th th:text="${group.getId()}"></th>
-                <td>
-                  <a
-                    th:text="${group.getTitle()}"
-                    th:href="@{/groups/{id}/students/(id=${group.getId()})}"
-                  ></a>
-                </td>
-                <td>
-                  <form
-                    th:method="delete"
-                    th:action="@{/groups/{id}/(id=${group.getId()})}"
-                  >
-                    <div class="btn btn-group btn-group-sm">
-                      <a
-                        sec:authorize="hasAuthority('ROLE_TEACHER')"
-                        th:href="@{/groups/{id}/journal/(id=${group.getId()})}"
-                        class="btn btn-info btn-sm"
-                        >Journal</a
-                      >
-                      <a
-                        sec:authorize="hasAuthority('ROLE_ADMIN')"
-                        th:href="@{/groups/{id}/(id=${group.getId()})}"
-                        class="btn btn-primary btn-sm"
-                        >Edit</a
-                      >
-                      <button
-                        sec:authorize="hasAuthority('ROLE_ADMIN')"
-                        class="btn btn-danger btn-sm"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>title</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="group: ${groupPage}">
+                    <th th:text="${group.getId()}"></th>
+                    <td>
+                        <a
+                                th:text="${group.getTitle()}"
+                                th:href="@{/groups/{id}/students/(id=${group.getId()})}"
+                        ></a>
+                    </td>
+                    <td>
+                        <form
+                                th:method="delete"
+                                th:action="@{/groups/{id}/(id=${group.getId()})}"
+                        >
+                            <div class="btn btn-group btn-group-sm">
+                                <a
+                                        th:href="@{/groups/{id}/journal/(id=${group.getId()})}"
+                                        class="btn btn-info btn-sm"
+                                >Journal</a
+                                >
+                                <a
+                                        th:href="@{/groups/{id}/(id=${group.getId()})}"
+                                        class="btn btn-primary btn-sm"
+                                >Edit</a
+                                >
+                                <button
+                                        sec:authorize="hasAuthority('ROLE_ADMIN')"
+                                        class="btn btn-danger btn-sm"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
         <div class="card-footer d-flex justify-content-center">
-          <div
-            th:insert="components/pagination :: pagination(link='/groups/',
+            <div
+                    th:insert="~{components/pagination :: pagination(link='/groups/',
                 model=${groupPage},
-                pages=${pageNumbers})"
-          ></div>
+                pages=${pageNumbers})}"
+            ></div>
         </div>
-      </div>
-    </section>
-  </body>
+    </div>
+</section>
+</body>
 </html>

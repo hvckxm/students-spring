@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.students.domain.entities.User;
 import com.students.infrastructure.repositories.user.UserRepository;
-import com.students.infrastructure.security.CustomUserDetails;
+import com.students.security.settings.CustomUserDetails;
 
 @Service
 public class CustomUserDetailService implements UserDetailsService {

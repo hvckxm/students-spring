@@ -4,6 +4,7 @@ import com.students.domain.entities.Lesson;
 import com.students.interactors.lesson.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +54,7 @@ public class LessonController {
     }
 
     @GetMapping("/create/")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String create(Model model) {
         model.addAttribute("lesson", new Lesson());
 
@@ -60,6 +62,7 @@ public class LessonController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public RedirectView store(@ModelAttribute Lesson lesson) {
         this.createLessonInteractor.create(lesson);
 
@@ -67,6 +70,7 @@ public class LessonController {
     }
 
     @GetMapping("/{id}/")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String edit(@PathVariable("id") int id, Model model) {
         Lesson lesson = this.getLessonInfoByIdInteractor.get(id);
 
@@ -76,6 +80,7 @@ public class LessonController {
     }
 
     @PutMapping("/{id}/")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public RedirectView update(@ModelAttribute Lesson lesson) {
         this.updateLessonInteractor.update(lesson);
 
@@ -83,6 +88,7 @@ public class LessonController {
     }
 
     @DeleteMapping("/{id}/")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public RedirectView delete(@ModelAttribute Lesson lesson) {
         this.deleteLessonInteractor.delete(lesson);
 

@@ -4,6 +4,7 @@ import com.students.domain.entities.Group;
 import com.students.interactors.group.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ public class GroupController {
         return "pages/groups/index";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/create/")
     public String create(Model model) {
         model.addAttribute("group", new Group());
@@ -58,6 +60,7 @@ public class GroupController {
         return "pages/groups/create";
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/")
     public RedirectView store(@ModelAttribute Group group) {
         this.createGroupInteractor.create(group);
@@ -65,6 +68,7 @@ public class GroupController {
         return new RedirectView("/groups/");
     }
 
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group == #model.id) || hasAuthority('ROLE_ADMIN') ")
     @GetMapping("/{id}/")
     public String edit(@PathVariable("id") int id, Model model) {
         Group group = this.showGroupInteractor.get(id);
@@ -74,6 +78,7 @@ public class GroupController {
         return "pages/groups/edit";
     }
 
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group == #model.id) || hasAuthority('ROLE_ADMIN')")
     @PutMapping("/{id}/")
     public RedirectView update(@ModelAttribute Group group) {
         this.updateGroupInteractor.update(group);
@@ -81,6 +86,7 @@ public class GroupController {
         return new RedirectView("/groups/");
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/{id}/")
     public RedirectView delete(@ModelAttribute Group group) {
         this.deleteGroupInteractor.delete(group);

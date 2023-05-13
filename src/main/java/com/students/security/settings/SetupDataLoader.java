@@ -1,4 +1,4 @@
-package com.students.infrastructure.security;
+package com.students.security.settings;
 
 import java.util.Optional;
 
@@ -33,16 +33,16 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
      }
 
      @Transactional
-     Role createRoleIfNotFound(String name) {
+     public void createRoleIfNotFound(String name) {
           Optional<Role> role = roleRepository.findByName(name);
 
           if (role.isPresent()) {
-               return role.get();
+               return;
           }
 
           Role newRole = new Role();
           newRole.setName(name);
 
-          return roleRepository.save(newRole);
+          roleRepository.save(newRole);
      }
 }

@@ -7,6 +7,7 @@ import com.students.interactors.group.student.*;
 import com.students.interactors.group.student.mark.GetStudentMarksListInteractor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -64,6 +65,7 @@ public class StudentController {
     }
 
     @GetMapping("/groups/{group}/students/create/")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public String create(@PathVariable Group group, Model model) {
         model.addAttribute("student", new Student());
         model.addAttribute("group", group);
@@ -72,6 +74,7 @@ public class StudentController {
     }
 
     @PostMapping("/groups/{group}/students/")
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group.id == #student.group.id) || hasAuthority('ROLE_ADMIN')")
     public RedirectView store(
             @PathVariable Group group,
             @ModelAttribute Student student,
@@ -85,6 +88,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}/edit")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
     public String edit(
             @PathVariable int id,
             Model model
@@ -97,6 +101,7 @@ public class StudentController {
     }
 
     @PutMapping("/students/{id}/")
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group.id == #student.group.id) || hasAuthority('ROLE_ADMIN') || authentication.details.id == #student.id")
     public RedirectView update(
             @ModelAttribute Student student,
             RedirectAttributes redirectAttributes
@@ -109,6 +114,7 @@ public class StudentController {
     }
 
     @DeleteMapping("/groups/{group}/students/{id}/")
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group.id == #student.group.id) || hasAuthority('ROLE_ADMIN')")
     public RedirectView delete(
             @PathVariable Group group,
             @ModelAttribute Student student,

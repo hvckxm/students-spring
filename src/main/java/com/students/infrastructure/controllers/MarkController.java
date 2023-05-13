@@ -5,6 +5,7 @@ import com.students.domain.entities.Mark;
 import com.students.domain.entities.Student;
 import com.students.interactors.group.student.mark.AddMarkToStudentInteractor;
 import com.students.interactors.group.student.mark.GetAllLessonInteractor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class MarkController {
     }
 
     @GetMapping("/create/")
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group.id == #student.group.id) || hasAuthority('ROLE_ADMIN')")
     public String create(@PathVariable("student") Student student, Model model) {
         model.addAttribute("mark", new Mark());
         model.addAttribute("student", student);
@@ -37,6 +39,7 @@ public class MarkController {
     }
 
     @PostMapping("/")
+    @PreAuthorize("(hasAuthority('ROLE_TEACHER') && authentication.details.group.id == #student.group.id) || hasAuthority('ROLE_ADMIN')")
     public RedirectView store(@PathVariable("student") Student student, @ModelAttribute Mark mark) {
         this.addMarkToStudentInteractor.addMarkToStudent(student, mark);
 

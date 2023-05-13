@@ -34,7 +34,7 @@ public class JournalController {
     }
 
     @GetMapping("/")
-    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    @PreAuthorize("(hasAuthority('ROLE_USER') && authentication.details.group == #group.id) || hasAuthority('ROLE_TEACHER')")
     public String index(Model ui, @ModelAttribute Group group) {
         Iterable<Student> students = this.getStudentsWithMarksInteractor.get(group);
         Iterable<Lesson> lessons = this.getAllJournalLessonsInteractor.get();

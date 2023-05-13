@@ -35,7 +35,7 @@ public class User {
     }
 
     public User(Long id, String firstName, String middleName, String lastName, String email, String password,
-            Date birthday, Group group, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
+                Date birthday, Group group, List<Role> roles, LocalDateTime createdAt, LocalDateTime updatedAt, LocalDateTime deletedAt) {
         this.id = id;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -44,6 +44,7 @@ public class User {
         this.password = password;
         this.birthday = birthday;
         this.group = group;
+        this.roles = roles;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.deletedAt = deletedAt;

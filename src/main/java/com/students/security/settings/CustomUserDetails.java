@@ -1,4 +1,4 @@
-package com.students.infrastructure.security;
+package com.students.security.settings;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import com.students.domain.entities.Role;
 import com.students.domain.entities.User;
 
 public class CustomUserDetails implements UserDetails {
-     private User user;
+     private final User user;
 
      public CustomUserDetails(User user) {
           this.user = user;
