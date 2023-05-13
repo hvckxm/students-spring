@@ -24,6 +24,7 @@ public class RegistrationUserDTO implements HasPasswordNeedToConfirm {
 
     @Email
     @UniqueUserEmail
+    @NotBlank
     private String email;
 
     @NotNull
