@@ -65,7 +65,7 @@ public class StudentController {
     }
 
     @GetMapping("/groups/{group}/students/create/")
-    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER') || hasAuthority('ROLE_ADMIN')")
     public String create(@PathVariable Group group, Model model) {
         model.addAttribute("student", new Student());
         model.addAttribute("group", group);
@@ -88,7 +88,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/{id}/edit")
-    @PreAuthorize("hasAuthority('ROLE_TEACHER')")
+    @PreAuthorize("hasAuthority('ROLE_TEACHER') || hasAuthority('ROLE_ADMIN')")
     public String edit(
             @PathVariable int id,
             Model model

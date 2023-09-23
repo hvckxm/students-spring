@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class User {
     private LocalDateTime deletedAt;
 
     public User() {
-
+        this.roles = new ArrayList<>();
     }
 
     public User(Long id, String firstName, String middleName, String lastName, String email, String password,
